@@ -1,0 +1,25 @@
+version: '2'
+services:
+  gobase:
+    build: .
+    volumes:
+      - $PWD/src:/go/src/derrickwilliams
+
+  build:
+    extends: gobase
+    entrypoint:
+      - go
+      - build
+    command: "main.go"
+
+  run:
+    extends: gobase
+    entrypoint:
+      - go
+      - run
+    command: "main.go"
+
+  exec:
+    extends: gobase
+    entrypoint: ["bash", "-c"]
+    command: "./main"
